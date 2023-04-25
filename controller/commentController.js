@@ -7,22 +7,23 @@ const {
   PutCommand,
   DeleteCommand,
   ScanCommand,
+  QueryCommand,
 } = require("@aws-sdk/lib-dynamodb");
 
 const docClient = new DynamoDBClient({ regions: process.env.AWS_REGION });
 
 exports.getComment = async (req, res) => {
   const p_id = req.params.post_id;
-  // console.log(p_id);
+  console.log(p_id);
   const params = {
     TableName: process.env.aws_comment_table_name,
-    FilterExpression: "post_id = :val",
+    FilterExpression: "post_id = :id",
     ExpressionAttributeValues: {
-      ":val": { S: "p_id" },
+      ":id": p_id,
     },
   };
   try {
-    const data = await docClient.send(new ScanCommand(params));
+    const data = await docClient.send(new Command(params));
     res.send(data.Items);
   } catch (err) {
     console.error(err);
