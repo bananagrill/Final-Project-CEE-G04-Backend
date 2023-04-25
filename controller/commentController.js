@@ -6,7 +6,6 @@ const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const {
   PutCommand,
   DeleteCommand,
-  QueryCommand,
   ScanCommand,
 } = require("@aws-sdk/lib-dynamodb");
 
@@ -35,16 +34,16 @@ exports.addComment = async (req, res) => {
   const comment_id = uuidv4();
   const comment_date = dateTime.getTime();
   const post_id = req.params.post_id;
-  const comment_like = 0;
-  const comment_dislike = 0;
+  // const comment_like = 0;
+  // const comment_dislike = 0;
   console.log(comment_date);
   const item = {
     comment_id: comment_id,
     post_id: post_id,
     ...req.body,
     comment_date: comment_date,
-    comment_dislike: comment_dislike,
-    comment_like: comment_like,
+    // comment_dislike: comment_dislike,
+    // comment_like: comment_like,
   };
   const params = {
     TableName: process.env.aws_comment_table_name,
