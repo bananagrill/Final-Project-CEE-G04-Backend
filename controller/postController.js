@@ -28,15 +28,11 @@ exports.getPost = async (req, res) => {
 exports.addPost = async (req, res) => {
   const post_id = uuidv4();
   const post_date = dateTime.getTime();
-  console.log(post_date);
-  // const post_like = 0;
-  // const post_dislike = 0;
+  // console.log(post_date);
   const item = {
     post_id: post_id,
     ...req.body,
     post_date: post_date,
-    // post_like: post_like,
-    // post_dislike: post_dislike,
   };
   const params = {
     TableName: process.env.aws_post_table_name,

@@ -16,10 +16,6 @@ exports.getComment = async (req, res) => {
   console.log(p_id);
   const params = {
     TableName: process.env.aws_comment_table_name,
-    // ExpressionAttributeValues: {
-    //   ":p_id": { S: p_id },
-    // },
-    // FilterExpression: "post_id = :p_id",
   };
   try {
     const data = await docClient.send(new ScanCommand(params));
@@ -34,16 +30,12 @@ exports.addComment = async (req, res) => {
   const comment_id = uuidv4();
   const comment_date = dateTime.getTime();
   const post_id = req.params.post_id;
-  // const comment_like = 0;
-  // const comment_dislike = 0;
   console.log(comment_date);
   const item = {
     comment_id: comment_id,
     post_id: post_id,
     ...req.body,
     comment_date: comment_date,
-    // comment_dislike: comment_dislike,
-    // comment_like: comment_like,
   };
   const params = {
     TableName: process.env.aws_comment_table_name,
