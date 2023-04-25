@@ -7,14 +7,13 @@ const {
   PutCommand,
   DeleteCommand,
   ScanCommand,
-  QueryCommand,
 } = require("@aws-sdk/lib-dynamodb");
 
 const docClient = new DynamoDBClient({ regions: process.env.AWS_REGION });
 
 exports.getComment = async (req, res) => {
   const p_id = req.params.post_id;
-  console.log(p_id);
+  // console.log(p_id);
   const params = {
     TableName: process.env.aws_comment_table_name,
     FilterExpression: "post_id = :id",
@@ -23,7 +22,7 @@ exports.getComment = async (req, res) => {
     },
   };
   try {
-    const data = await docClient.send(new Command(params));
+    const data = await docClient.send(new ScanCommand(params));
     res.send(data.Items);
   } catch (err) {
     console.error(err);
@@ -35,7 +34,7 @@ exports.addComment = async (req, res) => {
   const comment_id = uuidv4();
   const comment_date = dateTime.getTime();
   const post_id = req.params.post_id;
-  console.log(comment_date);
+  // console.log(comment_date);
   const item = {
     comment_id: comment_id,
     post_id: post_id,
@@ -57,9 +56,9 @@ exports.addComment = async (req, res) => {
 
 exports.deleteComment = async (req, res) => {
   const comment_id = req.params.comment_id;
-  console.log(comment_id);
+  // console.log(comment_id);
   const post_id = req.params.post_id;
-  console.log(post_id);
+  // console.log(post_id);
   const params = {
     TableName: process.env.aws_comment_table_name,
     Key: {
