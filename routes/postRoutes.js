@@ -5,6 +5,7 @@ const commentController = require("../controller/commentController");
 const router = express.Router();
 
 router.get("/", postController.getPost);
+router.get("/:author_id", postController.getPostsByAuthorID);
 router.delete("/:post_id", postController.deletePost);
 router.post("/", postController.addPost);
 
