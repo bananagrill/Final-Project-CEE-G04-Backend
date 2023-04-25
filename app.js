@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/post", postRoutes);
 app.use("/courseville", coursevilleRoutes);
 app.get("/", (req, res) => {
-  res.send("ไอ่ไนท์ไอ่โง่");
+  res.send("Server run correctly.");
 });
 
 app.all("*", (req, res, next) => {
