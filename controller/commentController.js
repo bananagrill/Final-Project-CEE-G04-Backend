@@ -16,6 +16,10 @@ exports.getComment = async (req, res) => {
   // console.log(p_id);
   const params = {
     TableName: process.env.aws_comment_table_name,
+    FilterExpression: "post_id = :val",
+    ExpressionAttributeValues: {
+      ":val": { S: "p_id" },
+    },
   };
   try {
     const data = await docClient.send(new ScanCommand(params));
