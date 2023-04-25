@@ -16,8 +16,9 @@ exports.getPost = async (req, res) => {
     TableName: process.env.aws_post_table_name,
   };
   try {
-    const data = await docClient.send(new ScanCommand(params));
-    res.send(data.Items);
+    // const data = await docClient.send(new ScanCommand(params));
+    // res.send(data.Items);
+    res.send("ไอ่ไนท์ ไอ่โง่");
   } catch (err) {
     console.error(err);
     res.status(500).send(err);
