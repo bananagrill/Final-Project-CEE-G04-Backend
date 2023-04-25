@@ -13,7 +13,7 @@ const docClient = new DynamoDBClient({ regions: process.env.AWS_REGION });
 
 exports.getComment = async (req, res) => {
   const p_id = req.params.post_id;
-  console.log(p_id);
+  // console.log(p_id);
   const params = {
     TableName: process.env.aws_comment_table_name,
   };
