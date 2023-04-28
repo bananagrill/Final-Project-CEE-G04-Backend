@@ -56,9 +56,7 @@ exports.addComment = async (req, res) => {
 
 exports.deleteComment = async (req, res) => {
   const comment_id = req.params.comment_id;
-  // console.log(comment_id);
   const post_id = req.params.post_id;
-  // console.log(post_id);
   const params = {
     TableName: process.env.aws_comment_table_name,
     Key: {
