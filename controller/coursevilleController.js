@@ -130,6 +130,6 @@ exports.getAssignmentDetail = (req, res) => {
 
 exports.logout = (req, res) => {
   req.session.destroy();
-  res.redirect(`http://${process.env.frontendIPAddress}/index.html`);
+  res.redirect(`http://${process.env.frontendIPAddress}`);
   res.end();
 };
