@@ -32,10 +32,11 @@ exports.getComment = async (req, res) => {
 
 exports.addComment = async (req, res) => {
   const comment_id = uuidv4();
-  const comment_date = dateTime.getTime();
+  const second = new Date();
+  const comment_date = dateTime.getTime(second);
   const post_id = req.params.post_id;
-  // console.log(comment_date);
   const item = {
+    second: second.getTime(),
     comment_id: comment_id,
     post_id: post_id,
     ...req.body,
@@ -56,9 +57,7 @@ exports.addComment = async (req, res) => {
 
 exports.deleteComment = async (req, res) => {
   const comment_id = req.params.comment_id;
-  // console.log(comment_id);
   const post_id = req.params.post_id;
-  // console.log(post_id);
   const params = {
     TableName: process.env.aws_comment_table_name,
     Key: {

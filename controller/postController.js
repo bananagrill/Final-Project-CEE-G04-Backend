@@ -45,13 +45,15 @@ exports.getPostsByAuthorID = async (req, res) => {
 
 exports.addPost = async (req, res) => {
   const post_id = uuidv4();
-  const post_date = dateTime.getTime();
-  // console.log(post_date);
+  const second = new Date();
+  const post_date = dateTime.getTime(second);
   const item = {
+    second: second.getTime(),
     post_id: post_id,
     ...req.body,
-    post_date: post_date,
+    post_date: post_date.toString(),
   };
+  console.log(item.second);
   const params = {
     TableName: process.env.aws_post_table_name,
     Item: item,
