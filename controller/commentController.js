@@ -32,10 +32,11 @@ exports.getComment = async (req, res) => {
 
 exports.addComment = async (req, res) => {
   const comment_id = uuidv4();
-  const comment_date = dateTime.getTime();
+  const secound = new Date();
+  const comment_date = dateTime.getTime(secound);
   const post_id = req.params.post_id;
-  // console.log(comment_date);
   const item = {
+    secound: secound.getTime(),
     comment_id: comment_id,
     post_id: post_id,
     ...req.body,
