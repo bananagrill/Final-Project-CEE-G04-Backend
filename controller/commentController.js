@@ -33,7 +33,9 @@ exports.getComment = async (req, res) => {
 exports.addComment = async (req, res) => {
   const comment_id = uuidv4();
   const second = new Date();
-  const comment_date = dateTime.getTime(second);
+  const comment_date = second.toLocaleString("en-GB", {
+    timeZone: "Asia/Jakarta",
+  });
   const post_id = req.params.post_id;
   const item = {
     second: second.getTime(),

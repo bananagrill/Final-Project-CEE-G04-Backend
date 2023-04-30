@@ -46,7 +46,9 @@ exports.getPostsByAuthorID = async (req, res) => {
 exports.addPost = async (req, res) => {
   const post_id = uuidv4();
   const second = new Date();
-  const post_date = dateTime.getTime(second);
+  const post_date = second.toLocaleString("en-GB", {
+    timeZone: "Asia/Jakarta",
+  });
   const item = {
     second: second.getTime(),
     post_id: post_id,
