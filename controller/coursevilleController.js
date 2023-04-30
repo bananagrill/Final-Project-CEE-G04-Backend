@@ -80,7 +80,7 @@ exports.getProfileInformation = (req, res) => {
       },
     };
     const profileReq = https.request(
-      "https://www.mycourseville.com/api/v1/public/users/me",
+      "https://www.mycourseville.com/api/v1/public/get/user/info",
       profileOptions,
       (profileRes) => {
         let profileData = "";
@@ -89,6 +89,7 @@ exports.getProfileInformation = (req, res) => {
         });
         profileRes.on("end", () => {
           const profile = JSON.parse(profileData);
+          console.log(profile);
           res.send(profile);
           res.end();
         });
@@ -129,6 +130,6 @@ exports.getAssignmentDetail = (req, res) => {
 
 exports.logout = (req, res) => {
   req.session.destroy();
-  res.redirect(`http://${process.env.frontendIPAddress}/login.html`);
+  res.redirect(`http://${process.env.frontendIPAddress}`);
   res.end();
 };
