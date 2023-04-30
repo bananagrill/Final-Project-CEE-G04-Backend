@@ -1,5 +1,4 @@
 const dotenv = require("dotenv");
-const dateTime = require("./dateTime");
 dotenv.config();
 const { v4: uuidv4 } = require("uuid");
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
