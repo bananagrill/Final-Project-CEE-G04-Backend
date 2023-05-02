@@ -130,6 +130,6 @@ exports.getAssignmentDetail = (req, res) => {
 
 exports.logout = (req, res) => {
   req.session.destroy();
-  res.redirect(`http://${process.env.frontendIPAddress}`);
+  res.redirect(`http://${backendIPAddress}/courseville/auth_app`);
   res.end();
 };
